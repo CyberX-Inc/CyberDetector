@@ -1,36 +1,17 @@
 const { getDB } = require('../database/db');
-const insertScan = (scanData) => {
+const insertScan = async (data) => {
   const db = getDB();
-  return new Promise((resolve, reject) => {
-    const { originalUrl, riskScore, decision, virusTotalResult, googleSafeBrowsingResult, urlhausResult, localChecks } = scanData;
-    const stmt = db.prepare(
-      `INSERT INTO scans 
-       (original_url, risk_score, decision, virus_total_result, google_safe_browsing_result, urlhaus_result, local_checks)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`
-    );
-    stmt.run(
-      originalUrl,
-      riskScore,
-      decision,
-      virusTotalResult || null,
-      googleSafeBrowsingResult || null,
-      urlhausResult || null,
-      JSON.stringify(localChecks) || null,
-      function(err) {
-        if (err) reject(err);
-        else resolve({ id: this.lastID });
-      }
-    );
-    stmt.finalize();
-  });
+  const { originalUrl, riskScore, decision, virusTotalResult, googleSafeBrowsingResult, urlhausResult, localChecks } = data;
+  const res = await db.query(
+    `INSERT INTO scans (original_url, risk_score, decision, virus_total_result, google_safe_browsing_result, urlhaus_result, local_checks)
+     VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id`,
+    [originalUrl, riskScore, decision, virusTotalResult || null, googleSafeBrowsingResult || null, urlhausResult || null, JSON.stringify(localChecks) || null]
+  );
+  return { id: res.rows[0].id };
 };
-const getAllScans = () => {
+const getAllScans = async () => {
   const db = getDB();
-  return new Promise((resolve, reject) => {
-    db.all('SELECT * FROM scans ORDER BY timestamp DESC', (err, rows) => {
-      if (err) reject(err);
-      else resolve(rows);
-    });
-  });
+  const res = await db.query('SELECT * FROM scans ORDER BY timestamp DESC');
+  return res.rows;
 };
 module.exports = { insertScan, getAllScans };

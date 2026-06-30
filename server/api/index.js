@@ -17,7 +17,12 @@ app.use(errorHandler);
 let dbReady = false;
 app.use(async (req, res, next) => {
   if (!dbReady) {
-    try { await initDB(); dbReady = true; } catch (e) { return res.status(500).json({ error: 'Database error' }); }
+    try {
+      await initDB();
+      dbReady = true;
+    } catch (e) {
+      return res.status(500).json({ error: 'Database connection failed' });
+    }
   }
   next();
 });
