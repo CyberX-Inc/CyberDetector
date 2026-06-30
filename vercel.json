@@ -1,0 +1,8 @@
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "VIRUSTOTAL_API_KEY": "@virustotal_key",
+    "GOOGLE_SAFE_BROWSING_API_KEY": "@safe_browsing_key"
+  }
+}
