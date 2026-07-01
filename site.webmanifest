@@ -1,0 +1,20 @@
+{
+  "name": "CyberDetector",
+  "short_name": "CD by CyberX",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#002b49",
+  "icons": [
+    {
+      "src": "/workspaces/CyberDetector/favicon-16.png.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/workspaces/CyberDetector/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}
