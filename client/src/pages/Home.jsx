@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { protectUrl } from '../api';
+
 function Home() {
   const [url, setUrl] = useState('');
   const [protectedUrl, setProtectedUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -14,11 +16,12 @@ function Home() {
       const data = await protectUrl(url);
       setProtectedUrl(data.protectedUrl);
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to generate protected link');
+      setError(err.message); // err is already a string from api.js
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <div className="max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold text-gray-900 mb-4">Protect a URL</h1>
@@ -46,11 +49,13 @@ function Home() {
           {loading ? 'Generating...' : 'Generate Protected Link'}
         </button>
       </form>
+
       {error && (
         <div className="mt-4 text-red-600 text-sm bg-red-50 border border-red-200 rounded-md p-3">
           {error}
         </div>
       )}
+
       {protectedUrl && (
         <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-md">
           <p className="text-sm font-medium text-green-800">Protected URL:</p>
@@ -73,4 +78,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

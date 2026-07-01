@@ -1,8 +1,18 @@
 const { Pool } = require('pg');
 let pool = null;
+
 const initDB = async () => {
-  if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required');
-  pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL environment variable is required');
+  }
+  console.log('📦 Connecting to PostgreSQL...');
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+  // Test connection
+  await pool.query('SELECT NOW()');
+  console.log('✅ PostgreSQL connected');
   await pool.query(`
     CREATE TABLE IF NOT EXISTS scans (
       id SERIAL PRIMARY KEY,
@@ -19,5 +29,7 @@ const initDB = async () => {
   console.log('📋 Scans table ready (PostgreSQL)');
   return pool;
 };
+
 const getDB = () => pool;
+
 module.exports = { initDB, getDB };
