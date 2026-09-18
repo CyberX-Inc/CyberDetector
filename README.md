@@ -1,4 +1,4 @@
-# URL Defense API
+# CyberDetector
 
 Complete URL scanning and protection service.
 
