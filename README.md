@@ -1,13 +1,12 @@
 # CyberDetector
 
-Complete URL scanning and protection service.
+You can't belive it's opensource!
 
-## Setup
+CyberDetector is the next opensource of Urldetector, URL Detector is money...
 
-1. `cd server && npm install`
-2. `cp .env.example .env` and add your API keys
-3. `npm run dev`
-4. In another terminal: `cd client && npm install && npm run dev`
-5. Open http://localhost:5173
 
-See full documentation in the project.
+
+
+Here, it's FREE!!!!!!!!!!!!!
+
+Anyways, that's really about it.
