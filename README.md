@@ -1,12 +1,14 @@
 # CyberDetector
 
-You can't belive it's opensource!
+**You won't believe it's open source!**
 
-CyberDetector is the next opensource of Urldetector, URL Detector is money...
+CyberDetector is the next generation of open-source URL security protection, built as a free alternative to expensive URL detection services.
 
+🔓 **Open Source**
+💰 **100% Free**
+🛡️ **Security-Focused**
+🚀 **Built for Everyone**
 
+No expensive subscriptions. No paywalls. Just powerful URL protection that anyone can use, contribute to, and improve.
 
-
-Here, it's FREE!!!!!!!!!!!!!
-
-Anyways, that's really about it.
+**CyberDetector — security should be accessible to everyone.**
